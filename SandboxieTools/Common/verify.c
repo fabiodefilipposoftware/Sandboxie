@@ -19,7 +19,6 @@ typedef long NTSTATUS;
 #include <stdio.h>
 #include <stdarg.h>
 #include <fileapi.h>
-#include <strsafe.h>
 
 __declspec(dllimport) NTSTATUS __stdcall
 NtReadFile(
