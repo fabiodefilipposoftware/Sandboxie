@@ -19,7 +19,7 @@ typedef long NTSTATUS;
 #include <stdio.h>
 #include <stdarg.h>
 #include <fileapi.h>
-
+#include <strsafe.h>
 
 __declspec(dllimport) NTSTATUS __stdcall
 NtReadFile(
@@ -75,7 +75,7 @@ static NTSTATUS MyCreateFile(_Out_ PHANDLE FileHandle, _In_ PCWSTR FileName, _In
     UNICODE_STRING uni;
 	OBJECT_ATTRIBUTES attr;
     WCHAR wszBuffer[MAX_PATH];
-    _snwprintf(wszBuffer, MAX_PATH, L"\\??\\%s", FileName);
+    _snwprintf_s(wszBuffer, MAX_PATH, L"\\??\\%s", FileName);
 	RtlInitUnicodeString(&uni, wszBuffer);
 	InitializeObjectAttributes(&attr, &uni, OBJ_CASE_INSENSITIVE, NULL, 0);
 
